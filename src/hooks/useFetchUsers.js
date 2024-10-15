@@ -39,7 +39,7 @@ const useFetchUsers = (url) => {
     saveToLocalStorage(updatedUsers);
   }
 
-  return { users, loading, error, deleteUser };
+  return { users, loading, error, deleteUser, };
 };
 
 export default useFetchUsers;
