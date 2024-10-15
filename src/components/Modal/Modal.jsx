@@ -1,9 +1,8 @@
-// src/components/Modal/Modal.jsx
 import React from 'react';
 
-const Modal = ({ user, onClose }) => {
-  if (!user) return null;
+const Modal = ({ user, onClose, onDelete }) => {
 
+  if (!user) return null;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full relative">
@@ -28,12 +27,25 @@ const Modal = ({ user, onClose }) => {
           <p><strong>Age:</strong> {user.dob.age}</p>
           <p><strong>Gender:</strong> {user.gender}</p>
         </div>
+        <div>
         <button
           className="block bg-blue-500 text-white px-4 py-2 rounded mt-6 mx-auto"
           onClick={onClose}
         >
           Close
         </button>
+        <button className="block bg-blue-500 text-white px-4 py-2 rounded mt-6 mx-auto"
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete();
+        }}>
+          Delete
+        </button>
+        <button className="block bg-blue-500 text-white px-4 py-2 rounded mt-6 mx-auto"
+        >
+          Update
+        </button>
+        </div>
       </div>
     </div>
   );

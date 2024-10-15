@@ -6,9 +6,8 @@ import Modal from '../Modal/Modal';
 import { UserContext } from '../../context/UserContext';
 
 const UserList = () => {
-  const { users, loading, error } = useFetchUsers('https://randomuser.me/api/?results=10');
+  const { users, loading, error, deleteUser } = useFetchUsers('https://randomuser.me/api/?results=10');
   const { selectedUser, setSelectedUser } = useContext(UserContext);
-
   if (loading) return <p className="text-center text-xl">Loading...</p>;
   if (error) return <p className="text-center text-red-500">Error fetching data: {error.message}</p>;
 
@@ -24,7 +23,15 @@ const UserList = () => {
           />
         ))}
       </div>
-      <Modal user={selectedUser} onClose={() => setSelectedUser(null)} />
+      <Modal 
+      user={selectedUser} 
+      onClose={() => setSelectedUser(null)}
+      onDelete={() => {
+        const index = users.findIndex(user => user === selectedUser);
+        deleteUser(index);
+        setSelectedUser(null);
+      }}
+      />
     </div>
   );
 };

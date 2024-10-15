@@ -28,7 +28,18 @@ const useFetchUsers = (url) => {
     fetchUsers();
   }, [url]);
 
-  return { users, loading, error };
+  const saveToLocalStorage = (updatedUsers) => {
+    setUsers(updatedUsers);
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+  };
+
+
+  const deleteUser = (index) => {
+    const updatedUsers = users.filter((_, i) => i !== index);
+    saveToLocalStorage(updatedUsers);
+  }
+
+  return { users, loading, error, deleteUser };
 };
 
 export default useFetchUsers;
