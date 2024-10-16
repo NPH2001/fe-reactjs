@@ -1,6 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Modal = ({ user, onClose, onDelete }) => {
+
+  const navigate = useNavigate();
 
   if (!user) return null;
   return (
@@ -42,6 +46,7 @@ const Modal = ({ user, onClose, onDelete }) => {
           Delete
         </button>
         <button className="block bg-blue-500 text-white px-4 py-2 rounded mt-6 mx-auto"
+        onClick={() => navigate('/update-user')}
         >
           Update
         </button>

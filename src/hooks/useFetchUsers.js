@@ -33,13 +33,25 @@ const useFetchUsers = (url) => {
     localStorage.setItem('users', JSON.stringify(updatedUsers));
   };
 
+  const addUser = (newUser) => {
+    const updatedUsers = [...users, newUser];
+    saveToLocalStorage(updatedUsers);
+  };
+
+  const updateUser = (index, updatedUser) => {
+    const updatedUsers = users.map((user, i) =>
+      i === index ? { ...user, ...updatedUser } : user
+    );
+    saveToLocalStorage(updatedUsers);
+  };
+
 
   const deleteUser = (index) => {
     const updatedUsers = users.filter((_, i) => i !== index);
     saveToLocalStorage(updatedUsers);
   }
 
-  return { users, loading, error, deleteUser, };
+  return { users, loading, error, deleteUser, addUser, updateUser};
 };
 
 export default useFetchUsers;

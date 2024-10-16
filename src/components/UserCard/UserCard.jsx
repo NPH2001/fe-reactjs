@@ -1,4 +1,3 @@
-// src/components/UserCard/UserCard.jsx
 import React from 'react';
 
 const UserCard = ({ user, onClick }) => {
